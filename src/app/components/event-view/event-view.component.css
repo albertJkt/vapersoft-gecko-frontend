@@ -1,0 +1,57 @@
+.status-bar {
+    height: 0.4em;
+    border-radius: 0.4em;
+}
+
+.event-view-line {
+    display: flex;
+    vertical-align: middle;
+    margin: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.space {
+    justify-content: space-between;
+}
+
+.event-view-line-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.event-view-title {
+    font-size: 1.25em;
+    font-family: "OpenSans";
+}
+
+.float-right {
+    float: right;
+    margin-left: 0.5em;
+}
+
+.comments-button {
+    width: 9em;
+}
+
+.max-width {
+    width: 100%;
+}
+
+button {
+    margin-top: 0.4em;
+}
+
+.clickable-text {
+    background-color: white;
+    color: #7a7a7a;
+    padding: 0;
+}
+
+.active:active .focus:focus {
+    background-color: red;
+}
+
+.content-box {
+    padding-left: 0.5em;
+}

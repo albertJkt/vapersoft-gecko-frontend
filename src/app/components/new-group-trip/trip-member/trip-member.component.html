@@ -1,0 +1,79 @@
+<div class="member-container">
+  <div class="info-container">
+    <div class="info-container-element">
+
+      <ng-template #userResultTemplate let-r="result" let-t="term">
+        <ngb-highlight [result]="r.fullname" [term]="t"></ngb-highlight>
+      </ng-template>
+
+      <input
+        id="typeahead-focus"
+        type="text"
+        class="form-control member-select"
+        placeholder="select member"
+        [(ngModel)]="userModel"
+        [ngbTypeahead]="userSearch"
+        [inputFormatter]="userFormatter"
+        (selectItem)="onUserSelect($event)"
+        (focus)="userFocus$.next($event.target.value)"
+        (click)="userClick$.next($event.target.value)"
+        (blur)="onUserBlur()"
+        [resultTemplate]="userResultTemplate"
+        #userInstance="ngbTypeahead"
+      />
+    </div>
+
+    <div class="info-container-element">
+
+        <ng-template #houseroomResultTemplate let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+  
+        <input
+          id="typeahead-focus"
+          type="text"
+          class="form-control member-select"
+          placeholder="{{getHouseroomPlaceholder()}}"
+          [(ngModel)]="houseroomModel"
+          [ngbTypeahead]="houseroomSearch"
+          [inputFormatter]="houseroomFormatter"
+          (selectItem)="onHouseroomSelect($event)"
+          (focus)="houseroomFocus$.next($event.target.value)"
+          (click)="houseroomClick$.next($event.target.value)"
+          (blur)="onHouseroomBlur()"
+          [resultTemplate]="houseroomResultTemplate"
+          [disabled]="isHouseroomDisabled()"
+          #houseroomInstance="ngbTypeahead"
+        />
+      </div>
+
+    <div class="info-container-element" *ngIf="viewModel.selectedUser">
+      <div *ngIf="viewModel.checkingAvailability">
+        <i>checking availability...</i>
+      </div>
+      <div *ngIf="!viewModel.checkingAvailability && viewModel.isAvailable !== null">
+        <div *ngIf="viewModel.isAvailable" class="user-available">employee available</div>
+        <div *ngIf="!viewModel.isAvailable" class="user-unavailable">employee unavailable</div>
+      </div>
+    </div>
+    
+    <!--
+    <div class="info-container-element" *ngIf="viewModel.selectedUser">
+      <div class="advanced-switch">
+        <ui-switch [(ngModel)]="viewModel.containsDetails" size="small" color="#4d724d"></ui-switch>
+      </div>
+    </div>
+
+    <div class="info-container-element" *ngIf="viewModel.selectedUser">
+      advanced
+    </div>
+    -->
+    
+  </div>
+
+  <div class="float-right">
+    <!--button class="btn btn-outline-secondary" (click)="launchDocumentModal()">Add Document</button-->
+    <button class="btn btn-outline-dark" (click)="remove()">Remove</button>
+  </div>
+
+</div>

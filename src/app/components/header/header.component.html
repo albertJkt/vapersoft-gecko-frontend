@@ -1,0 +1,38 @@
+<div class="space"></div>
+<nav class="navbar">
+  <div class="container">
+    <div class="logo">
+      <button class="title text-light custom-button" (click)="goToMain()">Gecko</button>
+      <img src="assets/images/gecko-icon.png" class="icon"/>
+    </div>
+    <div class="navHolder" *ngIf="loggedIn && user">
+      <nav class="my-2 my-md-0 mr-md-3">
+        <!-- TODO: uncomment this once these references have meaning and are functional
+        <a class="p-2 text-light">Trips</a>
+        <a class="p-2 text-light">New Trip</a>
+        <a class="p-2 text-light">Statistics</a>
+        <a class="p-2 text-light">Apartments</a>
+        <a class="p-2 text-light">Help</a>
+        -->
+        <button class="text-light custom-button" (click)="goToMain()">Trips</button>
+        <button class="text-light custom-button" *ngIf="isAdvisor" (click)="goToOrganisedTrips()">Organised Trips</button>
+        <button class="text-light custom-button" *ngIf="isAdmin" (click)="goToAdmin()">Manage</button>
+        <button class="btn btn-outline-secondary2" (click)="goToCreateNewGroupTrip()">Create</button>
+        <a class="p-2 text-light">{{user.fullname}}</a>
+        <a><img class="imgUser" src="../../../assets/userIcon.png" [popover]="myPopover">
+          <popover-content #myPopover placement="bottom" [closeOnClickOutside]="true">
+            <img class="imgUserWindow" src="../../../assets/userIcon.png">  
+            <hr class="breakLine">
+            <p class="userInformation">{{user.fullname}}</p>
+            <hr class="breakLine">
+            <p class="userInformation">{{user.email}}</p>
+            <hr class="hr-sign-out-button">
+            <div class="sign-out-button-container">
+              <button type="button" class="btn btn-outline-primary" (click)="logout()">Sign Out</button>
+            </div>
+          </popover-content>
+        </a>
+      </nav>
+    </div>
+  </div>
+</nav>
